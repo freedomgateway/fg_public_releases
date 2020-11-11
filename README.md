@@ -1,2 +1,7 @@
-# fg_public_releases
-This is bits and bobs of our private repositories that are intended to be publicly avaialable outside of the context of the rest of their source code.
+<p align="center"><img src="https://raw.githubusercontent.com/freedomgateway/fg_branding/master/fg_logo_gold.jpg" alt="drawing" width="300"/></p>
+
+# <p align="center"><b>fg_public_releases</b></p>
+<p align="center"><b><i>Random bits and bobs cleared for public release.</i></b></p>
+
+## Folders
+All folder names are the names of the private repositories that they contain parts of.
