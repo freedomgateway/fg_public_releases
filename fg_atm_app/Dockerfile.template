@@ -26,6 +26,7 @@ RUN echo "#!/bin/bash" > /etc/X11/xinit/xserverrc \
 # Copy in from build
 # Please note that you need to build the application using ./gradlew build locally before you can deploy it, otherwise the jar will not be there!
 COPY build/libs/fg_atm_app-1.0.jar /build/libs
+COPY start_x86.sh / 
 
 ENV UDEV=1
 
