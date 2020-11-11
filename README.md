@@ -5,3 +5,6 @@
 
 ## Folders
 All folder names are the names of the private repositories that they contain parts of.
+
+## License
+All publicly released files contained in this repository are under the MIT License unless otherwise stated in their sub-folder.
