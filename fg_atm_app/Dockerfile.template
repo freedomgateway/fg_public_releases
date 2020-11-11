@@ -1,0 +1,37 @@
+FROM balenalib/intel-nuc-debian-openjdk:11-jdk
+
+# Install XORG
+RUN install_packages xserver-xorg=1:7.7+19\
+ xserver-xorg-input-evdev \
+ xinit \
+ xfce4 \
+ xfce4-terminal \
+ x11-xserver-utils \
+ dbus-x11 \
+ libxkbcommon-x11-0 \
+ matchbox-keyboard \
+ xterm \
+ # This resolves a weird error message, but doesn't noticeably improve anything otherwise.
+ at-spi2-core
+ # Unsure if we need libinput, as far as I can tell evdev above is the correct one to use...
+ #xserver-xorg-input-libinput
+
+
+# Disable screen before turning it off
+# Investigate this later to disable screen timeout entirely --Noah
+RUN echo "#!/bin/bash" > /etc/X11/xinit/xserverrc \
+ && echo "" >> /etc/X11/xinit/xserverrc \
+ && echo 'exec /usr/bin/X -s 0 dpms' >> /etc/X11/xinit/xserverrc
+
+# Copy in from build
+COPY . .
+ENV UDEV=1
+
+# Useful for starting X11 apps from ssh
+ENV DISPLAY=:0.0
+
+# Avoid requesting XFCE4 question on X start
+ENV XFCE_PANEL_MIGRATE_DEFAULT=1
+
+# Start X11 Server
+CMD ["bash", "start_x86.sh"]

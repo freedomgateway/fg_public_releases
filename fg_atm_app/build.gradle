@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'idea'
+    id 'eclipse'
+    //This is to try to make javafx be less of a BITCH! -Noah
+    //https://github.com/openjfx/javafx-gradle-plugin
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
+//Get the version in the jar name hopefully...
+version=1.0
+
+repositories {
+    // Use jcenter for resolving dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+    mavenCentral()
+}
+
+javafx {
+    version = '11.0.1'
+    modules = [ 'javafx.fxml', 'javafx.graphics', 'javafx.swing', 'javafx.controls']
+}
+//Make it so that implementation configs can be resolved
+//Lol we're only using implementation because compile is removed in gradle 7.0 and I wanna be futureproof -Noah
+configurations.implementation.setCanBeResolved(true)
+
+dependencies {
+    implementation 'com.google.guava:guava:29.0-jre'
+    implementation 'org.jetbrains:annotations:16.0.2'
+    implementation group: 'org.glassfish', name: 'javax.json', version: '1.1.4'
+    implementation group: 'com.google.zxing', name: 'core', version: '3.4.1'
+    implementation group: 'com.google.zxing', name: 'javase', version: '3.4.1'
+    implementation group: 'org.boofcv', name: 'boofcv-core', version: '0.36.1'
+    implementation group: 'org.boofcv', name: 'boofcv-WebcamCapture', version: '0.36.1'
+    //MEI Bill Acceptor API is a local dependency. This is handled via a git submodule!
+    implementation fileTree(dir: 'MPOST_Java_V3.30/API_and_Demo/lib/', include: '*.jar')
+}
+
+application {
+    // Define the main class for the application.
+    mainClassName = 'ui_foundation.ATM_app'
+    mainModule = 'fg_atm_app'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ui_foundation.ATM_app'
+    }
+    //This *SHOULD* succ all the files defined compile dependencies into the jar!
+    from { (configurations.implementation).collect { it.isDirectory() ? it : zipTree(it) } } {
+        exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+    }
+}
