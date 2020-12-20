@@ -8,4 +8,5 @@
 
 ## Code Copyright/License Notice
 * All publicly released files contained in this repository are under the MIT License unless otherwise stated in their sub-folder.
+
 Copyright © 2020, Freedom Servicing LLC, All rights reserved.
