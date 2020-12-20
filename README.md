@@ -1,6 +1,6 @@
-<p align="center"><img src="https://raw.githubusercontent.com/freedomgateway/fg_branding/master/fg_logo_gold.jpg" alt="drawing" width="300"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/freedomservicing/fs_branding/master/fs/fs_logo.jpg" alt="drawing" width="300"/></p>
 
-# <p align="center"><b>fg_public_releases</b></p>
+# <p align="center"><b>fs_public_releases</b></p>
 <p align="center"><b><i>Random bits and bobs cleared for public release.</i></b></p>
 
 ## Folders
